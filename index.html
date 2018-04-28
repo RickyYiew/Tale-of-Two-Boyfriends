@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Tale of Two Boyfriends</title>
+    <link rel="stylesheet" type="text/css" href="./Style/style.css">
+    <script src="./Script/jquery.js"></script>
+    <script src="./Script/character.js"></script>
+    <script src="./Script/plot.js"></script>
+    <script src="./Script/jqmeter.min.js"></script>
+</head>
+
+<body>
+ <!--Home Page-->
+        <div id="homepage">
+            <img id="title_image" src="Images/title.png">
+            <h1>Tale of Two Boyfriends</h1>
+            <p>This project provides a platform for creating interactive narratives with dramatically meaningful variations for the interactor to explore. The story pattern of W2P (a woman an 2 partners) is derived from an essay by Janet H. Murray “A Tale of Two Boyfriends: A Literary Abstraction Strategy for Creating Meaningful Character Variation“<span class="reference" >[1]</span> which privileges female agency within the classic western narrative format of a romantic triangle between one woman and two men. The patterns divides male characters into Boyfriends of ObliGation (BOGs) and Boyfriends of Desire (BODs). Using this platform, authors can define a BOG and a BOD character based on multiple variants. The system then generates a set of possible plot events, similar to the events in Vladimir Propp’s classic abstraction of fairytales<span class="reference" >[2]</span>. </p>
+            <a href="./File/T2B_Essay.pdf">Read Janet H. Murray's article “A Tale of Two Boyfriends”</a>
+            <button id="create_story">Create a T2B story</button>
+        </div>
+   
+    
+    <div id="step1" class="hidden">
+        <div class="header">
+            <h1>Step 1: Build Your Characters</h1>
+            <p class="description">First, let's create two boyfriends with opposite characteristics. You can select attributes from the table below but the ones you can choose are limited. For each category, you have 3 positive points and 3 negative points to distribute for two characters. Please think about distributing them wisely to create dramatic contrast.</p>
+        </div>
+
+        <div id="attributes">
+            <table id="authority" width="100%" height="100%">
+                <tr height="10%">
+                    <td width="8%" rowspan="10"><img src="Images/leftArrow.png" width="70%" height="11%" href="#" id="left1"></td>
+                    <td rowspan="10" width="4%"></td>
+                    <td colspan="7">
+                        <h3>Authority (1/4)</h3>
+                    </td>
+                    <td rowspan="10" width="4%"></td>
+                    <td width="8%" rowspan="10"><img src="Images/rightArrow.png" width="70%" height="11%" href="#" id="right1"></td>
+                </tr>
+                <tr aligh="top" height="5%">
+                    <td colspan="3" style="text-align: right">
+                        <p style="display:inline">Available positive points: </p>
+                        <h4 id="1pp">3</h4>
+                    </td>
+                    <td width="6%"></td>
+                    <td colspan="3" style="text-align: left">
+                        <p style="display:inline">Available negative points: </p>
+                        <h5 id="1np">3</h5>
+                    </td>
+                </tr>
+                <tr height="3%">
+                    <td colspan="7"></td>
+                </tr>
+                <tr height="8%">
+                    <td colspan="3">
+                        <h2>BOG</h2>
+                    </td>
+                    <td rowspan="7" width="6%"></td>
+                    <td colspan="3">
+                        <h2>BOD</h2>
+                    </td>
+                </tr>
+                <tr height="5%">
+                    <td>
+                        <p>Positive</p>
+                    </td>
+                    <td rowspan="6"></td>
+                    <td>
+                        <p>Negative</p>
+                    </td>
+                    <td>
+                        <p>Positive</p>
+                    </td>
+                    <td rowspan="6"></td>
+                    <td>
+                        <p>Negative</p>
+                    </td>
+                </tr>
+                <tr height="13.8%">
+                    <td width="17.5%"><button class="attPositive" id="P11">Communitarian</button></td>
+                    <td width="17.5%"><button class="attNegative" id="N11">Manipulative</button></td>
+
+                    <td width="17.5%"><button class="attPositive" id="P16">Communitarian</button></td>
+                    <td width="17.5%"><button class="attNegative" id="N16">Manipulative</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P12">Rational</button></td>
+                    <td><button class="attNegative" id="N12">Rule-based</button></td>
+
+                    <td><button class="attPositive" id="P17">Rational</button></td>
+                    <td><button class="attNegative" id="N17">Rule-based</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P13">Legal</button></td>
+                    <td><button class="attNegative" id="N13">Conformist</button></td>
+
+                    <td><button class="attPositive" id="P18">Legal</button></td>
+                    <td><button class="attNegative" id="N18">Conformist</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P14">Physical</button></td>
+                    <td><button class="attNegative" id="N14">Dictatorial</button></td>
+
+                    <td><button class="attPositive" id="P19">Physical</button></td>
+                    <td><button class="attNegative" id="N19">Dictatorial</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P15">Financial</button></td>
+                    <td><button class="attNegative" id="N15">Menacing</button></td>
+
+                    <td><button class="attPositive" id="P110">Financial</button></td>
+                    <td><button class="attNegative" id="N110">Menacing</button></td>
+                </tr>
+            </table>
+
+            <table id="potency" class="hidden" width="100%" height="100%">
+                <tr height="10%">
+                    <td width="8%" rowspan="10"><img src="Images/leftArrow.png" width="70%" height="11%" href="#" id="left2"></td>
+                    <td rowspan="10" width="4%"></td>
+                    <td colspan="7">
+                        <h3>Potency (2/4)</h3>
+                    </td>
+                    <td rowspan="10" width="4%"></td>
+                    <td width="8%" rowspan="10"><img src="Images/rightArrow.png" width="70%" height="11%" href="#" id="right2"></td>
+                </tr>
+                <tr aligh="top" height="5%">
+                    <td colspan="3" style="text-align: right">
+                        <p style="display:inline">Available positive points: </p>
+                        <h4 id="2pp">3</h4>
+                    </td>
+                    <td width="6%"></td>
+                    <td colspan="3" style="text-align: left">
+                        <p style="display:inline">Available negative points: </p>
+                        <h5 id="2np">3</h5>
+                    </td>
+                </tr>
+                <tr height="3%">
+                    <td colspan="7"></td>
+                </tr>
+                <tr height="8%">
+                    <td colspan="3">
+                        <h2>BOG</h2>
+                    </td>
+                    <td rowspan="7" width="6%"></td>
+                    <td colspan="3">
+                        <h2>BOD</h2>
+                    </td>
+                </tr>
+                <tr height="5%">
+                    <td>
+                        <p>Positive</p>
+                    </td>
+                    <td rowspan="6"></td>
+                    <td>
+                        <p>Negative</p>
+                    </td>
+                    <td>
+                        <p>Positive</p>
+                    </td>
+                    <td rowspan="6"></td>
+                    <td>
+                        <p>Negative</p>
+                    </td>
+                </tr>
+                <tr height="13.8%">
+                    <td width="17.5%"><button class="attPositive" id="P21">Sexuality</button></td>
+                    <td width="17.5%"><button class="attNegative" id="N21">Impotent</button></td>
+
+                    <td width="17.5%"><button class="attPositive" id="P26">Sexuality</button></td>
+                    <td width="17.5%"><button class="attNegative" id="N26">Impotent</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P22">Knowledge</button></td>
+                    <td><button class="attNegative" id="N22">Withholding</button></td>
+
+                    <td><button class="attPositive" id="P27">Knowledge</button></td>
+                    <td><button class="attNegative" id="N27">Withholding</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P23">Legal System</button></td>
+                    <td><button class="attNegative" id="N23">Controlling</button></td>
+
+                    <td><button class="attPositive" id="P28">Legal System</button></td>
+                    <td><button class="attNegative" id="N28">Controlling</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P24">Fighting</button></td>
+                    <td><button class="attNegative" id="N24">Despotic</button></td>
+
+                    <td><button class="attPositive" id="P29">Fighting</button></td>
+                    <td><button class="attNegative" id="N29">Despotic</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P25">Wealth</button></td>
+                    <td><button class="attNegative" id="N25">Violating</button></td>
+
+                    <td><button class="attPositive" id="P210">Wealth</button></td>
+                    <td><button class="attNegative" id="N210">Violating</button></td>
+                </tr>
+            </table>
+
+
+            <table id="patriarchal" class="hidden" width="100%" height="100%">
+                <tr height="10%">
+                    <td width="8%" rowspan="10"><img src="Images/leftArrow.png" width="70%" height="11%" href="#" id="left3"></td>
+                    <td rowspan="10" width="4%"></td>
+                    <td colspan="7">
+                        <h3>Patriarchal Privilege (3/4)</h3>
+                    </td>
+                    <td rowspan="10" width="4%"></td>
+                    <td width="8%" rowspan="10"><img src="Images/rightArrow.png" width="70%" height="11%" href="#" id="right3"></td>
+                </tr>
+                <tr aligh="top" height="5%">
+                    <td colspan="3" style="text-align: right">
+                        <p style="display:inline">Available positive points: </p>
+                        <h4 id="3pp">3</h4>
+                    </td>
+                    <td width="6%"></td>
+                    <td colspan="3" style="text-align: left">
+                        <p style="display:inline">Available negative points: </p>
+                        <h5 id="3np">3</h5>
+                    </td>
+                </tr>
+                <tr height="3%">
+                    <td colspan="7"></td>
+                </tr>
+                <tr height="8%">
+                    <td colspan="3">
+                        <h2>BOG</h2>
+                    </td>
+                    <td rowspan="7" width="6%"></td>
+                    <td colspan="3">
+                        <h2>BOD</h2>
+                    </td>
+                </tr>
+                <tr height="5%">
+                    <td>
+                        <p>Positive</p>
+                    </td>
+                    <td rowspan="6"></td>
+                    <td>
+                        <p>Negative</p>
+                    </td>
+                    <td>
+                        <p>Positive</p>
+                    </td>
+                    <td rowspan="6"></td>
+                    <td>
+                        <p>Negative</p>
+                    </td>
+                </tr>
+                <tr height="13.8%">
+                    <td width="17.5%"><button class="attPositive" id="P31">Pacifist</button></td>
+                    <td width="17.5%"><button class="attNegative" id="N31">Exploitative</button></td>
+
+                    <td width="17.5%"><button class="attPositive" id="P36">Pacifist</button></td>
+                    <td width="17.5%"><button class="attNegative" id="N36">Exploitative</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P32">Egalitarian</button></td>
+                    <td><button class="attNegative" id="N32">Snobbish</button></td>
+
+                    <td><button class="attPositive" id="P37">Egalitarian</button></td>
+                    <td><button class="attNegative" id="N37">Snobbish</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P33">Righteous</button></td>
+                    <td><button class="attNegative" id="N33">Unfaithful</button></td>
+
+                    <td><button class="attPositive" id="P38">Righteous</button></td>
+                    <td><button class="attNegative" id="N38">Unfaithful</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P34">Gallant</button></td>
+                    <td><button class="attNegative" id="N34">Abusive</button></td>
+
+                    <td><button class="attPositive" id="P39">Gallant</button></td>
+                    <td><button class="attNegative" id="N39">Abusive</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P35">Sheltering</button></td>
+                    <td><button class="attNegative" id="N35">Tyrannical</button></td>
+
+                    <td><button class="attPositive" id="P310">Sheltering</button></td>
+                    <td><button class="attNegative" id="N310">Tyrannical</button></td>
+                </tr>
+            </table>
+
+            <table id="attachment" class="hidden" width="100%" height="100%">
+                <tr height="10%">
+                    <td width="8%" rowspan="10"><img src="Images/leftArrow.png" width="70%" height="11%" href="#" id="left4"></td>
+                    <td rowspan="10" width="4%"></td>
+                    <td colspan="7">
+                        <h3>Attachment (4/4)</h3>
+                    </td>
+                    <td rowspan="10" width="4%"></td>
+                    <td width="8%" rowspan="10"><img src="Images/rightArrow.png" width="70%" height="11%" href="#" id="right4"></td>
+                </tr>
+                <tr aligh="top" height="5%">
+                    <td colspan="3" style="text-align: right">
+                        <p style="display:inline">Available positive points: </p>
+                        <h4 id="4pp">3</h4>
+                    </td>
+                    <td width="6%"></td>
+                    <td colspan="3" style="text-align: left">
+                        <p style="display:inline">Available negative points: </p>
+                        <h5 id="4np">3</h5>
+                    </td>
+                </tr>
+                <tr height="3%">
+                    <td colspan="7"></td>
+                </tr>
+                <tr height="8%">
+                    <td colspan="3">
+                        <h2>BOG</h2>
+                    </td>
+                    <td rowspan="7" width="6%"></td>
+                    <td colspan="3">
+                        <h2>BOD</h2>
+                    </td>
+                </tr>
+                <tr height="5%">
+                    <td>
+                        <p>Positive</p>
+                    </td>
+                    <td rowspan="6"></td>
+                    <td>
+                        <p>Negative</p>
+                    </td>
+                    <td>
+                        <p>Positive</p>
+                    </td>
+                    <td rowspan="6"></td>
+                    <td>
+                        <p>Negative</p>
+                    </td>
+                </tr>
+                <tr height="13.8%">
+                    <td width="17.5%"><button class="attPositive" id="P41">Supportive</button></td>
+                    <td width="17.5%"><button class="attNegative" id="N41">Cloying</button></td>
+
+                    <td width="17.5%"><button class="attPositive" id="P46">Supportive</button></td>
+                    <td width="17.5%"><button class="attNegative" id="N46">Cloying</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P42">Encouraging</button></td>
+                    <td><button class="attNegative" id="N42">Cool</button></td>
+
+                    <td><button class="attPositive" id="P47">Encouraging</button></td>
+                    <td><button class="attNegative" id="N47">Cool</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P43">Friendly</button></td>
+                    <td><button class="attNegative" id="N43">Objectifying</button></td>
+
+                    <td><button class="attPositive" id="P48">Friendly</button></td>
+                    <td><button class="attNegative" id="N48">Objectifying</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P44">Amorous</button></td>
+                    <td><button class="attNegative" id="N44">Jealous</button></td>
+
+                    <td><button class="attPositive" id="P49">Amorous</button></td>
+                    <td><button class="attNegative" id="N49">Jealous</button></td>
+                </tr>
+                <tr height="13.8%">
+                    <td><button class="attPositive" id="P45">Indulgent</button></td>
+                    <td><button class="attNegative" id="N45">Sadistic</button></td>
+
+                    <td><button class="attPositive" id="P410">Indulgent</button></td>
+                    <td><button class="attNegative" id="N410">Sadistic</button></td>
+                </tr>
+            </table>
+
+
+        </div>
+
+
+
+        <button class="next" id="step1-next" disabled>Next</button>
+    </div>
+
+
+
+
+    <div id="step2" class="hidden">
+        <div class="header">
+            <h1>Step 2: Build Your Story</h1>
+            <p class="description">Please choose the initial storylines between female protagonist and the two boyfriends. Then it will help you generate part of the plots and consequences. </p>
+        </div>
+
+        <div id="plots" >
+            <table width="100%" height="100%">
+                <tr height="20%">
+                    <td width="10%">
+                        <h2></h2>
+                    </td>
+                    <td width="18%">
+                        <h2>Opening</h2>
+                    </td>
+                    <td width="18%">
+                        <h2>Disruption</h2>
+                    </td>
+                    <td width="18%">
+                        <h2>Crisis</h2>
+                    </td>
+                    <td width="18%">
+                        <h2>Choice</h2>
+                    </td>
+                    <td width="18%">
+                        <h2>Consequence</h2>
+                    </td>
+                </tr>
+
+                <tr height="40%">
+                    <td>
+                        <h3 style="color: #7660e2">BOG</h3>
+                    </td>
+                    <td>
+                        <a class="storyCard" id="BOG-Opening" >
+                            <p></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="storyCard" id="BOG-Disruption" >
+                           <p></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="storyCard" id="BOG-Crisis">
+                           <p ></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="storyCard" id="BOG-Choice">
+                            <p ></p>
+                        </a>
+                    </td>
+                    <td rowspan="2">
+                        <a id="Consequence" >
+                            <p>Happy with BOG</p>
+                        </a>
+                    </td>
+                </tr>
+
+
+
+                <tr height="40%">
+                    <td>
+                        <h3>BOD</h3>
+                    </td>
+                    <td>
+                        <a class="storyCard" id="BOD-Opening" >
+                            <p></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="storyCard" id="BOD-Disruption">
+                            <p></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="storyCard" id="BOD-Crisis">
+                            <p></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="storyCard" id="BOD-Choice">
+                            <p></p>
+                        </a>
+                    </td>
+                 
+                </tr>
+            </table>
+        </div>
+
+        <div id="annotation">
+            <h6 style="float: left;
+    width: 49%; text-align: left;">BOG</h6>
+            <h6 style="float: right;
+    width: 49%; text-align: right;">BOD</h6>
+        </div>
+        <div class="meters" id="jqmeter-container"></div>
+
+
+
+
+
+
+        <div id="plotControl">
+            <p id="plotInstruct" style="float:left">Please click either box above to start.</p>
+           
+            <table width="100%" height="70%">
+                <tr>
+                    <td width="16.66%">
+                        <a class="plotSelector" id="slot1" href="#">
+                            <p>1</p>
+                        </a>
+                    </td>
+                    <td width="16.66%">
+                        <a class="plotSelector" id="slot2" href="#">
+                            <p>2</p>
+                        </a>
+                    </td>
+                    <td width="16.66%">
+                        <a class="plotSelector" id="slot3" href="#">
+                            <p>3</p>
+                        </a>
+                    </td>
+                    <td width="16.66%">
+                        <a class="plotSelector" id="slot4" href="#">
+                            <p>4</p>
+                        </a>
+                    </td>
+                    <td width="16.66%">
+                        <a class="plotSelector" id="slot5" href="#">
+                            <p>5</p>
+                        </a>
+                    </td>
+                    <td width="16.66%"><img src="Images/restart.png" style="float:right" width="30%" href="#" id="restart" /></td>
+                </tr>
+            </table>
+        </div>
+
+
+
+        <button class="next" id="step2-next" disabled>Next</button>
+    </div>
+    
+    <div id="step3" class="hidden">
+        <div class="header">
+            <h1>This is your T2B story</h1>
+            <p class="description">The storylines are generated based on the characteristics you picked for each boyfriend. You can click restart to do it all over again.</p>
+        <table width="76%"  style="margin-top:3%;margin-left: 12%; margin-right: 12%; margin-bottom: 1%">
+            <tr>
+            <td width="50%"><h3 style="color: #7660e2; text-align: left" >BOG Characteristics</h3></td>
+            <td width="50%"><h3 style='text-align: left'>BOD Characteristics</h3></td>
+            </tr>
+            <tr></tr>
+            <tr>
+            <td valign="top" class="chaResult" id="BOGcha1"><p><b>Authority: </b></p>
+            </ td> 
+                <td valign="top" class="chaResult" id="BODcha1"><p><b>Authority: </b>122334</p></td>
+            </tr>
+            <tr><td valign="top" class="chaResult" id="BOGcha2"><p><b>Potency: </b>122334</p></td>
+            <td valign="top" class="chaResult" id="BODcha2"><p><b>Potency: </b>122334</p></td>
+            </tr>
+            <tr>
+            <td valign="top" class="chaResult" id="BOGcha3"><p><b>Patriarchal Privilege </b>122334</p></td>
+            <td valign="top" class="chaResult" id="BODcha3"><p><b>Patriarchal Privilege </b>122334</p></td>
+          </tr>
+            <tr>
+            <td valign="top" class="chaResult" id="BOGcha4">
+            <p><b>Attachment: </b>122334</p></td>
+            <td valign="top" class="chaResult" id="BODcha4"><p><b>Attachment: </b>122334</p></td>
+            </tr>
+            </table>
+        </div>
+        
+         <div id="plots">
+            <table width="100%" height="100%">
+                <tr height="20%">
+                    <td width="10%">
+                        <h2></h2>
+                    </td>
+                    <td width="18%">
+                        <h2>Opening</h2>
+                    </td>
+                    <td width="18%">
+                        <h2>Disruption</h2>
+                    </td>
+                    <td width="18%">
+                        <h2>Crisis</h2>
+                    </td>
+                    <td width="18%">
+                        <h2>Choice</h2>
+                    </td>
+                    <td width="18%">
+                        <h2>Consequence</h2>
+                    </td>
+                </tr>
+
+                <tr height="40%">
+                    <td>
+                        <h3 style="color: #7660e2">BOG</h3>
+                    </td>
+                    <td>
+                        <a class="selected1" id="BOGResult1" >
+                            <p></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="selected1" id="BOGResult2" >
+                           <p></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="selected1" id="BOGResult3">
+                           <p ></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="selected1" id="BOGResult4">
+                            <p ></p>
+                        </a>
+                    </td>
+                    <td rowspan="2">
+                        <a id="endResult" >
+                            <p>Happy with BOG</p>
+                        </a>
+                    </td>
+                </tr>
+
+
+
+                <tr height="40%">
+                    <td>
+                        <h3>BOD</h3>
+                    </td>
+                    <td>
+                        <a class="selected2" id="BODResult1" >
+                            <p></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="selected2" id="BODResult2">
+                            <p></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="selected2" id="BODResult3">
+                            <p></p>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="selected2" id="BODResult4">
+                            <p></p>
+                        </a>
+                    </td>
+                 
+                </tr>
+            </table>
+        </div>
+            
+            <button class="next" id="step3-next" style="margin-top: 2%">Restart</button>
+        </div>
+
+
+</body>
